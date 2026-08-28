@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 трафаретов для цитат</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f7;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px;
+        }
+
+        /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ (ОБЩЕЕ) ===== */
+        .controls {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            padding: 24px 28px;
+            max-width: 1300px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .controls-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .controls h2 {
+            font-size: 17px;
+            color: #1e2a36;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .controls-header .hint {
+            font-size: 12px;
+            color: #8a9ba8;
+        }
+
+        /* ===== ОБЩИЕ НАСТРОЙКИ ===== */
+        .global-settings {
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8ef;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+        }
+
+        .global-settings .global-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e2a36;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .global-settings .global-title span {
+            background: #1e2a36;
+            color: white;
+            padding: 0 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            line-height: 20px;
+        }
+
+        .global-settings .global-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 16px;
+            align-items: flex-end;
+        }
+
+        .global-settings .global-row .input-group {
+            flex: 1 0 140px;
+            min-width: 120px;
+        }
+
+        .global-settings .global-row .input-group label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #7b8b9a;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .global-settings .global-row .input-group textarea {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1.5px solid #d5dce5;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            resize: vertical;
+            min-height: 48px;
+            line-height: 1.5;
+            background: white;
+            transition: border 0.2s;
+        }
+
+        .global-settings .global-row .input-group textarea:focus {
+            border-color: #4a6a85;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 106, 133, 0.08);
+        }
+
+        .global-settings .global-row .input-group input[type="text"],
+        .global-settings .global-row .input-group select {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1.5px solid #d5dce5;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: white;
+            transition: border 0.2s;
+        }
+
+        .global-settings .global-row .input-group select {
+            cursor: pointer;
+        }
+
+        .global-settings .global-row .input-group input[type="text"]:focus,
+        .global-settings .global-row .input-group select:focus {
+            border-color: #4a6a85;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 106, 133, 0.08);
+        }
+
+        .global-settings .global-row .input-group input[type="range"] {
+            width: 100%;
+            accent-color: #4a6a85;
+            cursor: pointer;
+        }
+
+        .global-settings .global-row .input-group .range-value {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1e2a36;
+            margin-left: 6px;
+        }
+
+        .global-settings .global-row .input-group .color-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .global-settings .global-row .input-group .color-wrap input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #d5dce5;
+            border-radius: 8px;
+            padding: 2px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .global-settings .global-row .input-group .color-wrap input[type="color"]:hover {
+            border-color: #b0bcc9;
+        }
+
+        .global-settings .sync-hint {
+            font-size: 11px;
+            color: #8a9ba8;
+            margin-top: 8px;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .print-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .print-btn {
+            background: #1e2a36;
+            color: white;
+            border: none;
+            padding: 13px 38px;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(30, 42, 54, 0.15);
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-btn:hover {
+            background: #0f1a24;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(30, 42, 54, 0.25);
+        }
+
+        .print-btn:active {
+            transform: translateY(0);
+        }
+
+        .print-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ===== ОБЁРТКА КАРТОЧКИ + РЕДАКТОР ===== */
+        .card-wrapper {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-wrapper:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ===== РЕДАКТОР ОТДЕЛЬНОЙ КАРТОЧКИ ===== */
+        .card-editor {
+            background: #f8fafc;
+            padding: 14px 16px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8ef;
+            transition: border 0.2s;
+            width: 100%;
+        }
+
+        .card-editor:hover {
+            border-color: #cad2dc;
+        }
+
+        .card-editor .badge {
+            display: inline-block;
+            font-size: 10px;
+            background: #1e2a36;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .card-editor .input-group {
+            margin-bottom: 6px;
+        }
+
+        .card-editor .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-editor label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #7b8b9a;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .card-editor textarea {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1.5px solid #d5dce5;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            transition: border 0.2s;
+            background: white;
+            resize: vertical;
+            min-height: 48px;
+            line-height: 1.5;
+        }
+
+        .card-editor textarea:focus {
+            border-color: #4a6a85;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 106, 133, 0.08);
+        }
+
+        .card-editor input[type="text"] {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1.5px solid #d5dce5;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            transition: border 0.2s;
+            background: white;
+        }
+
+        .card-editor input[type="text"]:focus {
+            border-color: #4a6a85;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 106, 133, 0.08);
+        }
+
+        .card-editor .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card-editor .row .input-group {
+            flex: 1;
+            margin-bottom: 0;
+            min-width: 70px;
+        }
+
+        .card-editor select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1.5px solid #d5dce5;
+            border-radius: 8px;
+            font-size: 12px;
+            background: white;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card-editor select:focus {
+            border-color: #4a6a85;
+            outline: none;
+        }
+
+        .card-editor input[type="range"] {
+            width: 100%;
+            accent-color: #4a6a85;
+            cursor: pointer;
+        }
+
+        .card-editor .range-value {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1e2a36;
+            min-width: 28px;
+            text-align: right;
+        }
+
+        .card-editor .color-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .card-editor input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #d5dce5;
+            border-radius: 8px;
+            padding: 2px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .card-editor input[type="color"]:hover {
+            border-color: #b0bcc9;
+        }
+
+        .card-editor .theme-select-wrap {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .card-editor .theme-select-wrap select {
+            flex: 1;
+        }
+
+        /* ===== СЕТКА ===== */
+        .print-grid {
+            max-width: 210mm;
+            width: 100%;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 18px;
+        }
+
+        /* ===== КАРТОЧКА ===== */
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px 16px;
+            background: white;
+            transition: all 0.2s;
+            text-align: center;
+            min-height: 200px;
+            height: auto;
+            border: var(--card-border-width, 3px) solid var(--card-border-color, #1e2a36);
+            border-radius: 16px;
+            box-shadow: inset 0 0 0 1px rgba(30, 42, 54, 0.03);
+            /* переменные для внутренних элементов */
+            --card-corner-width: 4px;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .card .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.10);
+            border-radius: 12px;
+            padding: 14px 10px;
+            width: 90%;
+            min-height: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== ТЕМЫ ===== */
+        .card.theme-classic {
+            border-radius: 20px;
+        }
+        .card.theme-classic .corner {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-color: var(--card-border-color, #1e2a36);
+            border-style: solid;
+            border-width: 0;
+        }
+        .card.theme-classic .corner.tl {
+            top: 14px;
+            left: 14px;
+            border-top-width: var(--card-corner-width, 4px);
+            border-left-width: var(--card-corner-width, 4px);
+            border-radius: 4px 0 0 0;
+        }
+        .card.theme-classic .corner.tr {
+            top: 14px;
+            right: 14px;
+            border-top-width: var(--card-corner-width, 4px);
+            border-right-width: var(--card-corner-width, 4px);
+            border-radius: 0 4px 0 0;
+        }
+        .card.theme-classic .corner.bl {
+            bottom: 14px;
+            left: 14px;
+            border-bottom-width: var(--card-corner-width, 4px);
+            border-left-width: var(--card-corner-width, 4px);
+            border-radius: 0 0 0 4px;
+        }
+        .card.theme-classic .corner.br {
+            bottom: 14px;
+            right: 14px;
+            border-bottom-width: var(--card-corner-width, 4px);
+            border-right-width: var(--card-corner-width, 4px);
+            border-radius: 0 0 4px 0;
+        }
+        .card.theme-classic .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.10);
+            border-radius: 12px;
+        }
+
+        .card.theme-oval {
+            border-radius: 50%;
+            aspect-ratio: auto;
+            min-height: 180px;
+        }
+        .card.theme-oval .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.10);
+            border-radius: 50%;
+            padding: 18px 12px;
+            width: 88%;
+            min-height: 80%;
+        }
+        .card.theme-oval .corner {
+            display: none;
+        }
+
+        .card.theme-ticket {
+            border-radius: 4px;
+            padding: 22px 18px;
+            position: relative;
+        }
+        .card.theme-ticket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: var(--card-border-width, 3px) solid var(--card-border-color, #1e2a36);
+            border-radius: 4px;
+            pointer-events: none;
+            background: repeating-linear-gradient(90deg,
+                    transparent 0px, transparent 8px,
+                    var(--card-border-color, #1e2a36) 8px, var(--card-border-color, #1e2a36) 10px,
+                    transparent 10px, transparent 18px);
+            background-size: 18px 100%;
+            background-position: 0 0;
+            background-repeat: repeat-x;
+            mask-image: linear-gradient(to bottom, transparent 0px, transparent 6px, black 6px, black calc(100% - 6px), transparent calc(100% - 6px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0px, transparent 6px, black 6px, black calc(100% - 6px), transparent calc(100% - 6px), transparent 100%);
+        }
+        .card.theme-ticket .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.12);
+            border-radius: 4px;
+            padding: 14px 10px;
+            width: 92%;
+            min-height: 70%;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+        .card.theme-ticket .corner {
+            display: none;
+        }
+        .card.theme-ticket::after {
+            content: '- - - - - - - - - - - - - - - - -';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 7px;
+            letter-spacing: 1px;
+            color: var(--card-border-color, #1e2a36);
+            background: white;
+            padding: 0 8px;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .card.theme-double {
+            border: calc(var(--card-border-width, 3px) * 1.5) double var(--card-border-color, #1e2a36);
+            border-radius: 16px;
+        }
+        .card.theme-double .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.10);
+            border-radius: 12px;
+        }
+        .card.theme-double .corner {
+            display: none;
+        }
+
+        .card.theme-book {
+            border-radius: 8px;
+            position: relative;
+            padding: 22px 18px;
+        }
+        .card.theme-book::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 2px solid var(--card-border-color, #1e2a36);
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .card.theme-book::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px dashed var(--card-border-color, #1e2a36);
+            border-radius: 2px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        .card.theme-book .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.08);
+            border-radius: 6px;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        .card.theme-book .corner {
+            display: none;
+        }
+
+        .card.theme-checkered {
+            border-radius: 16px;
+            background: white;
+            position: relative;
+        }
+        .card.theme-checkered::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            background-image: repeating-linear-gradient(45deg, var(--card-border-color, #1e2a36) 0px, var(--card-border-color, #1e2a36) 4px, transparent 4px, transparent 8px);
+            background-size: 16px 16px;
+            opacity: 0.12;
+            pointer-events: none;
+            border-radius: 12px;
+            z-index: 0;
+        }
+        .card.theme-checkered .inner-line {
+            border: 2px dashed rgba(30, 42, 54, 0.10);
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            background: white;
+        }
+        .card.theme-checkered .corner {
+            display: none;
+        }
+
+        /* ===== ТЕКСТ ===== */
+        .card .quote-text {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 4px;
+            word-break: break-word;
+            max-width: 95%;
+            transition: all 0.15s;
+            white-space: pre-wrap;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card .quote-author {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #7b8b9a;
+            letter-spacing: 0.3px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            padding-top: 8px;
+            min-width: 40px;
+            transition: all 0.15s;
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card .quote-author::before {
+            content: "— ";
+            color: #b0bcc9;
+        }
+
+        .card .quote-author:empty::before {
+            content: "";
+        }
+        .card .quote-author:empty {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .card .placeholder-hint {
+            font-size: 12px;
+            color: #cbd3db;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            white-space: pre-wrap;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card .theme-badge {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            font-size: 8px;
+            background: rgba(30, 42, 54, 0.05);
+            color: #7b8b9a;
+            padding: 1px 8px;
+            border-radius: 10px;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* ===== ПЕЧАТЬ ===== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .controls {
+                display: none !important;
+            }
+            .print-btn-container {
+                display: none !important;
+            }
+            .print-grid {
+                max-width: 100%;
+                padding: 5mm 4mm;
+                gap: 8mm 6mm;
+                border-radius: 0;
+                box-shadow: none;
+                background: white;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-wrapper {
+                box-shadow: none;
+                padding: 0;
+                background: transparent;
+                border-radius: 0;
+                display: block;
+            }
+            .card {
+                border-color: #1a1a1a !important;
+                box-shadow: inset 0 0 0 1px #ddd !important;
+                page-break-inside: avoid;
+                min-height: 160px;
+                transform: none !important;
+                --card-border-color: #1a1a1a !important;
+                --card-border-width: 3px !important;
+            }
+            .card .corner {
+                border-color: #1a1a1a !important;
+            }
+            .card .inner-line {
+                border-color: #bbb !important;
+            }
+            .card .placeholder-hint {
+                font-size: 10px;
+                color: #aaa;
+            }
+            .card .quote-text {
+                white-space: pre-wrap;
+            }
+            .card .theme-badge {
+                display: none !important;
+            }
+            .card.theme-ticket::before {
+                background: repeating-linear-gradient(90deg,
+                        transparent 0px, transparent 8px,
+                        #1a1a1a 8px, #1a1a1a 10px,
+                        transparent 10px, transparent 18px) !important;
+            }
+            .card.theme-ticket::after {
+                color: #1a1a1a !important;
+            }
+            .card.theme-book::before,
+            .card.theme-book::after {
+                border-color: #1a1a1a !important;
+                opacity: 0.4 !important;
+            }
+            .card.theme-checkered::before {
+                background-image: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 4px, transparent 4px, transparent 8px) !important;
+                opacity: 0.25 !important;
+            }
+            .card .quote-text {
+                color: #000 !important;
+            }
+            .card .quote-author {
+                color: #555 !important;
+            }
+            .card-editor {
+                display: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        /* ===== ПОДСКАЗКА ===== */
+        .no-print {
+            margin-top: 25px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #7b8b9a;
+            text-align: center;
+            font-size: 14px;
+            background: white;
+            padding: 14px 28px;
+            border-radius: 40px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+        }
+        .no-print strong {
+            color: #1e2a36;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 700px) {
+            .print-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .card .quote-text {
+                font-size: 15px;
+            }
+            .print-btn {
+                padding: 12px 25px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+            .card.theme-oval {
+                aspect-ratio: auto;
+                min-height: 160px;
+            }
+            .global-settings .global-row .input-group {
+                flex: 1 0 100%;
+            }
+            .card-editor .row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .print-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .card {
+                min-height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== КНОПКИ ===== -->
+    <div class="print-btn-container no-print">
+        <button class="print-btn" onclick="window.print()">
+            Печать
+        </button>
+        <button class="print-btn" style="background:#7f8c8d;" onclick="location.reload()">
+            Сбросить
+        </button>
+    </div>
+
+    <!-- ===== ПАНЕЛЬ УПРАВЛЕНИЯ (ОБЩЕЕ) ===== -->
+    <div class="controls no-print">
+        <div class="global-settings" id="globalSettings">
+            <div class="global-title">
+                <span>Общее</span> Общее редактирование (изменяет все карточки)
+            </div>
+            <div class="global-row">
+                <div class="input-group">
+                    <label for="globalQuote">Цитата</label>
+                    <textarea id="globalQuote" rows="2" placeholder="Введите общую цитату..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="globalAuthor">Автор</label>
+                    <input type="text" id="globalAuthor" placeholder="Общий автор">
+                </div>
+                <div class="input-group">
+                    <label for="globalFont">Шрифт</label>
+                    <select id="globalFont"></select>
+                </div>
+                <div class="input-group">
+                    <label for="globalSize">Размер цитаты</label>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <input type="range" id="globalSize" min="12" max="40" value="14">
+                        <span class="range-value" id="globalSizeVal">14</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="globalAuthorSize">Размер автора</label>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <input type="range" id="globalAuthorSize" min="10" max="30" value="12">
+                        <span class="range-value" id="globalAuthorSizeVal">12</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="globalColor">Цвет текста</label>
+                    <div class="color-wrap">
+                        <input type="color" id="globalColor" value="#1a1a1a">
+                        <span style="font-size:11px;color:#7b8b9a;">текста</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="globalHeight">Высота карточки</label>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <input type="range" id="globalHeight" min="160" max="400" value="200">
+                        <span class="range-value" id="globalHeightVal">200px</span>
+                    </div>
+                </div>
+                <!-- НОВЫЕ ПОЛЯ: обводка -->
+                <div class="input-group">
+                    <label for="globalBorderColor">Цвет обводки</label>
+                    <div class="color-wrap">
+                        <input type="color" id="globalBorderColor" value="#1e2a36">
+                        <span style="font-size:11px;color:#7b8b9a;">обводки</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="globalBorderWidth">Толщина обводки</label>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <input type="range" id="globalBorderWidth" min="1" max="10" value="3">
+                        <span class="range-value" id="globalBorderWidthVal">3px</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sync-hint">Изменения в этих полях сразу применяются ко всем шести карточкам и сохраняются в браузере.</div>
+        </div>
+    </div>
+
+    <!-- ===== СЕТКА С КАРТОЧКАМИ И РЕДАКТОРАМИ ===== -->
+    <div class="print-grid" id="grid"></div>
+
+    <div class="no-print">
+        Нажмите <strong>«Печать»</strong> или <strong>Ctrl+P</strong>.
+    </div>
+
+    <script>
+        // ============================================================
+        //  КОНФИГУРАЦИЯ
+        // ============================================================
+        const CARD_COUNT = 6;
+
+        const THEMES = [
+            { id: 'classic', label: 'Классический' },
+            { id: 'oval', label: 'Овал' },
+            { id: 'ticket', label: 'Билет' },
+            { id: 'double', label: 'Двойная' },
+            { id: 'book', label: 'Книга' },
+            { id: 'checkered', label: 'Клетка' },
+        ];
+
+        const FONTS = [
+            { name: 'Georgia', value: "'Georgia','Times New Roman',serif" },
+            { name: 'Times New Roman', value: "'Times New Roman',serif" },
+            { name: 'Arial', value: "'Arial',sans-serif" },
+            { name: 'Courier New', value: "'Courier New',monospace" },
+            { name: 'Comic Sans MS', value: "'Comic Sans MS',cursive" },
+            { name: 'Verdana', value: "'Verdana',sans-serif" },
+            { name: 'Impact', value: "'Impact',sans-serif" },
+        ];
+
+        // ============================================================
+        //  РАБОТА С COOKIE
+        // ============================================================
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? decodeURIComponent(match[2]) : null;
+        }
+
+        function setCookie(name, value, days = 365) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
+
+        function saveDataToCookie(data) {
+            setCookie('stencils_data', JSON.stringify(data));
+        }
+
+        function loadDataFromCookie() {
+            const raw = getCookie('stencils_data');
+            if (raw) {
+                try {
+                    return JSON.parse(raw);
+                } catch (e) { return null; }
+            }
+            return null;
+        }
+
+        // ============================================================
+        //  ГЛОБАЛЬНЫЕ ЭЛЕМЕНТЫ
+        // ============================================================
+        const grid = document.getElementById('grid');
+        const globalQuote = document.getElementById('globalQuote');
+        const globalAuthor = document.getElementById('globalAuthor');
+        const globalFont = document.getElementById('globalFont');
+        const globalSize = document.getElementById('globalSize');
+        const globalAuthorSize = document.getElementById('globalAuthorSize');
+        const globalColor = document.getElementById('globalColor');
+        const globalHeight = document.getElementById('globalHeight');
+        const globalBorderColor = document.getElementById('globalBorderColor');
+        const globalBorderWidth = document.getElementById('globalBorderWidth');
+        const globalSizeVal = document.getElementById('globalSizeVal');
+        const globalAuthorSizeVal = document.getElementById('globalAuthorSizeVal');
+        const globalHeightVal = document.getElementById('globalHeightVal');
+        const globalBorderWidthVal = document.getElementById('globalBorderWidthVal');
+
+        // Заполняем общий select шрифтов (по умолчанию Courier New – индекс 3)
+        FONTS.forEach((f, idx) => {
+            const opt = document.createElement('option');
+            opt.value = f.value;
+            opt.textContent = f.name;
+            if (idx === 3) opt.selected = true;
+            globalFont.appendChild(opt);
+        });
+
+        // ============================================================
+        //  МАССИВ ДАННЫХ КАРТОЧЕК
+        // ============================================================
+        const cardsData = [];
+
+        // ============================================================
+        //  ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СОЗДАНИЯ ЭЛЕМЕНТОВ
+        // ============================================================
+        function createFontSelect(index, currentValue) {
+            const select = document.createElement('select');
+            select.dataset.index = index;
+            select.dataset.field = 'font';
+            FONTS.forEach((f, idx) => {
+                const opt = document.createElement('option');
+                opt.value = f.value;
+                opt.textContent = f.name;
+                const defaultVal = FONTS[3].value;
+                if ((currentValue && f.value === currentValue) || (!currentValue && idx === 3)) {
+                    opt.selected = true;
+                }
+                select.appendChild(opt);
+            });
+            return select;
+        }
+
+        function createThemeSelect(index, currentId) {
+            const select = document.createElement('select');
+            select.dataset.index = index;
+            select.dataset.field = 'theme';
+            THEMES.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                opt.textContent = t.label;
+                if (t.id === currentId) opt.selected = true;
+                select.appendChild(opt);
+            });
+            return select;
+        }
+
+        // ============================================================
+        //  СОЗДАНИЕ РЕДАКТОРА ДЛЯ КАРТОЧКИ
+        // ============================================================
+        function createCardEditor(index, initialData) {
+            const editor = document.createElement('div');
+            editor.className = 'card-editor no-print';
+
+            const badge = document.createElement('span');
+            badge.className = 'badge';
+            badge.textContent = '#' + (index + 1);
+            editor.appendChild(badge);
+
+            // Тема
+            const gTheme = document.createElement('div');
+            gTheme.className = 'input-group';
+            const lTheme = document.createElement('label');
+            lTheme.textContent = 'Трафарет';
+            const themeRow = document.createElement('div');
+            themeRow.className = 'theme-select-wrap';
+            const selectTheme = createThemeSelect(index, initialData.theme || 'classic');
+            themeRow.appendChild(selectTheme);
+            gTheme.appendChild(lTheme);
+            gTheme.appendChild(themeRow);
+            editor.appendChild(gTheme);
+
+            // Цитата
+            const gQuote = document.createElement('div');
+            gQuote.className = 'input-group';
+            const lQuote = document.createElement('label');
+            lQuote.textContent = 'Цитата';
+            const textareaQuote = document.createElement('textarea');
+            textareaQuote.placeholder = 'Введите цитату...';
+            textareaQuote.dataset.index = index;
+            textareaQuote.dataset.field = 'quote';
+            textareaQuote.rows = 2;
+            gQuote.appendChild(lQuote);
+            gQuote.appendChild(textareaQuote);
+            editor.appendChild(gQuote);
+
+            // Автор
+            const gAuthor = document.createElement('div');
+            gAuthor.className = 'input-group';
+            const lAuthor = document.createElement('label');
+            lAuthor.textContent = 'Автор';
+            const inputAuthor = document.createElement('input');
+            inputAuthor.type = 'text';
+            inputAuthor.placeholder = 'Имя автора или группы...';
+            inputAuthor.dataset.index = index;
+            inputAuthor.dataset.field = 'author';
+            gAuthor.appendChild(lAuthor);
+            gAuthor.appendChild(inputAuthor);
+            editor.appendChild(gAuthor);
+
+            // Ряд: шрифт + размер цитаты
+            const row1 = document.createElement('div');
+            row1.className = 'row';
+
+            const gFont = document.createElement('div');
+            gFont.className = 'input-group';
+            const lFont = document.createElement('label');
+            lFont.textContent = 'Шрифт';
+            const selectFont = createFontSelect(index, initialData.font || FONTS[3].value);
+            gFont.appendChild(lFont);
+            gFont.appendChild(selectFont);
+            row1.appendChild(gFont);
+
+            const gSize = document.createElement('div');
+            gSize.className = 'input-group';
+            const lSize = document.createElement('label');
+            lSize.textContent = 'Размер цитаты';
+            const sizeRow = document.createElement('div');
+            sizeRow.style.display = 'flex';
+            sizeRow.style.alignItems = 'center';
+            sizeRow.style.gap = '6px';
+            const rangeSize = document.createElement('input');
+            rangeSize.type = 'range';
+            rangeSize.min = 12;
+            rangeSize.max = 40;
+            rangeSize.value = initialData.quoteSize || 14;
+            rangeSize.dataset.index = index;
+            rangeSize.dataset.field = 'quoteSize';
+            const sizeVal = document.createElement('span');
+            sizeVal.className = 'range-value';
+            sizeVal.textContent = rangeSize.value;
+            sizeRow.appendChild(rangeSize);
+            sizeRow.appendChild(sizeVal);
+            gSize.appendChild(lSize);
+            gSize.appendChild(sizeRow);
+            row1.appendChild(gSize);
+            editor.appendChild(row1);
+
+            // Ряд: размер автора + цвет текста
+            const row2 = document.createElement('div');
+            row2.className = 'row';
+
+            const gAuthorSize = document.createElement('div');
+            gAuthorSize.className = 'input-group';
+            const lAuthorSize = document.createElement('label');
+            lAuthorSize.textContent = 'Размер автора';
+            const authorSizeRow = document.createElement('div');
+            authorSizeRow.style.display = 'flex';
+            authorSizeRow.style.alignItems = 'center';
+            authorSizeRow.style.gap = '6px';
+            const rangeAuthorSize = document.createElement('input');
+            rangeAuthorSize.type = 'range';
+            rangeAuthorSize.min = 10;
+            rangeAuthorSize.max = 30;
+            rangeAuthorSize.value = initialData.authorSize || 12;
+            rangeAuthorSize.dataset.index = index;
+            rangeAuthorSize.dataset.field = 'authorSize';
+            const authorSizeVal = document.createElement('span');
+            authorSizeVal.className = 'range-value';
+            authorSizeVal.textContent = rangeAuthorSize.value;
+            authorSizeRow.appendChild(rangeAuthorSize);
+            authorSizeRow.appendChild(authorSizeVal);
+            gAuthorSize.appendChild(lAuthorSize);
+            gAuthorSize.appendChild(authorSizeRow);
+            row2.appendChild(gAuthorSize);
+
+            const gColor = document.createElement('div');
+            gColor.className = 'input-group';
+            const lColor = document.createElement('label');
+            lColor.textContent = 'Цвет текста';
+            const colorRow = document.createElement('div');
+            colorRow.className = 'color-row';
+            const colorPicker = document.createElement('input');
+            colorPicker.type = 'color';
+            colorPicker.value = initialData.color || '#1a1a1a';
+            colorPicker.dataset.index = index;
+            colorPicker.dataset.field = 'color';
+            const colorLabel = document.createElement('span');
+            colorLabel.style.fontSize = '11px';
+            colorLabel.style.color = '#7b8b9a';
+            colorLabel.textContent = 'текста';
+            colorRow.appendChild(colorPicker);
+            colorRow.appendChild(colorLabel);
+            gColor.appendChild(lColor);
+            gColor.appendChild(colorRow);
+            row2.appendChild(gColor);
+            editor.appendChild(row2);
+
+            // Высота карточки
+            const gHeight = document.createElement('div');
+            gHeight.className = 'input-group';
+            const lHeight = document.createElement('label');
+            lHeight.textContent = 'Высота карточки';
+            const heightRow = document.createElement('div');
+            heightRow.style.display = 'flex';
+            heightRow.style.alignItems = 'center';
+            heightRow.style.gap = '6px';
+            const rangeHeight = document.createElement('input');
+            rangeHeight.type = 'range';
+            rangeHeight.min = 160;
+            rangeHeight.max = 400;
+            rangeHeight.value = initialData.cardHeight || 200;
+            rangeHeight.dataset.index = index;
+            rangeHeight.dataset.field = 'cardHeight';
+            const heightVal = document.createElement('span');
+            heightVal.className = 'range-value';
+            heightVal.textContent = rangeHeight.value + 'px';
+            heightRow.appendChild(rangeHeight);
+            heightRow.appendChild(heightVal);
+            gHeight.appendChild(lHeight);
+            gHeight.appendChild(heightRow);
+            editor.appendChild(gHeight);
+
+            // НОВЫЕ ПОЛЯ: цвет обводки и толщина обводки
+            const rowBorder = document.createElement('div');
+            rowBorder.className = 'row';
+
+            const gBorderColor = document.createElement('div');
+            gBorderColor.className = 'input-group';
+            const lBorderColor = document.createElement('label');
+            lBorderColor.textContent = 'Цвет обводки';
+            const borderColorRow = document.createElement('div');
+            borderColorRow.className = 'color-row';
+            const borderColorPicker = document.createElement('input');
+            borderColorPicker.type = 'color';
+            borderColorPicker.value = initialData.borderColor || '#1e2a36';
+            borderColorPicker.dataset.index = index;
+            borderColorPicker.dataset.field = 'borderColor';
+            const borderColorLabel = document.createElement('span');
+            borderColorLabel.style.fontSize = '11px';
+            borderColorLabel.style.color = '#7b8b9a';
+            borderColorLabel.textContent = 'обводки';
+            borderColorRow.appendChild(borderColorPicker);
+            borderColorRow.appendChild(borderColorLabel);
+            gBorderColor.appendChild(lBorderColor);
+            gBorderColor.appendChild(borderColorRow);
+            rowBorder.appendChild(gBorderColor);
+
+            const gBorderWidth = document.createElement('div');
+            gBorderWidth.className = 'input-group';
+            const lBorderWidth = document.createElement('label');
+            lBorderWidth.textContent = 'Толщина обводки';
+            const borderWidthRow = document.createElement('div');
+            borderWidthRow.style.display = 'flex';
+            borderWidthRow.style.alignItems = 'center';
+            borderWidthRow.style.gap = '6px';
+            const rangeBorderWidth = document.createElement('input');
+            rangeBorderWidth.type = 'range';
+            rangeBorderWidth.min = 1;
+            rangeBorderWidth.max = 10;
+            rangeBorderWidth.value = initialData.borderWidth || 3;
+            rangeBorderWidth.dataset.index = index;
+            rangeBorderWidth.dataset.field = 'borderWidth';
+            const borderWidthVal = document.createElement('span');
+            borderWidthVal.className = 'range-value';
+            borderWidthVal.textContent = rangeBorderWidth.value + 'px';
+            borderWidthRow.appendChild(rangeBorderWidth);
+            borderWidthRow.appendChild(borderWidthVal);
+            gBorderWidth.appendChild(lBorderWidth);
+            gBorderWidth.appendChild(borderWidthRow);
+            rowBorder.appendChild(gBorderWidth);
+
+            editor.appendChild(rowBorder);
+
+            // ===== Сохраняем ссылки на элементы редактора =====
+            const editorData = {
+                textareaQuote,
+                inputAuthor,
+                selectFont,
+                selectTheme,
+                rangeSize,
+                rangeAuthorSize,
+                rangeHeight,
+                colorPicker,
+                sizeVal,
+                authorSizeVal,
+                heightVal,
+                borderColorPicker,
+                rangeBorderWidth,
+                borderWidthVal,
+            };
+
+            // ===== Назначение обработчиков =====
+            textareaQuote.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            inputAuthor.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            selectFont.addEventListener('change', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            selectTheme.addEventListener('change', function(e) {
+                updateCardTheme(e);
+                saveAllToCookie();
+            });
+            rangeSize.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            rangeAuthorSize.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            rangeHeight.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            colorPicker.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            borderColorPicker.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+            rangeBorderWidth.addEventListener('input', function(e) {
+                updateCardFromIndividual(e);
+                saveAllToCookie();
+            });
+
+            return { editor, editorData };
+        }
+
+        // ============================================================
+        //  ИНИЦИАЛИЗАЦИЯ КАРТОЧЕК И РЕДАКТОРОВ
+        // ============================================================
+        const initThemes = THEMES.map(t => t.id);
+
+        for (let i = 0; i < CARD_COUNT; i++) {
+            const initialTheme = initThemes[i] || 'classic';
+
+            // ---- СОЗДАНИЕ ОБЁРТКИ ----
+            const wrapper = document.createElement('div');
+            wrapper.className = 'card-wrapper';
+            wrapper.dataset.index = i;
+
+            // ---- КАРТОЧКА ----
+            const card = document.createElement('div');
+            card.className = `card theme-${initialTheme}`;
+            card.dataset.index = i;
+            card.dataset.theme = initialTheme;
+
+            const positions = ['tl', 'tr', 'bl', 'br'];
+            positions.forEach(pos => {
+                const corner = document.createElement('div');
+                corner.className = `corner ${pos}`;
+                card.appendChild(corner);
+            });
+
+            const inner = document.createElement('div');
+            inner.className = 'inner-line';
+
+            const quoteText = document.createElement('div');
+            quoteText.className = 'quote-text';
+            quoteText.textContent = '';
+
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder-hint';
+            placeholder.textContent = 'Введите цитату';
+
+            const author = document.createElement('div');
+            author.className = 'quote-author';
+            author.textContent = '';
+
+            const themeBadge = document.createElement('div');
+            themeBadge.className = 'theme-badge no-print';
+            themeBadge.textContent = THEMES.find(t => t.id === initialTheme)?.label || '';
+
+            inner.appendChild(quoteText);
+            inner.appendChild(placeholder);
+            inner.appendChild(author);
+            card.appendChild(inner);
+            card.appendChild(themeBadge);
+
+            // ---- РЕДАКТОР ----
+            const initialData = {
+                theme: initialTheme,
+                quote: '',
+                author: '',
+                font: FONTS[3].value,
+                quoteSize: 14,
+                authorSize: 12,
+                color: '#1a1a1a',
+                cardHeight: 200,
+                borderColor: '#1e2a36',
+                borderWidth: 3,
+            };
+            const { editor, editorData } = createCardEditor(i, initialData);
+
+            // ---- СОБИРАЕМ В ОБЁРТКУ ----
+            wrapper.appendChild(card);
+            wrapper.appendChild(editor);
+            grid.appendChild(wrapper);
+
+            // ---- СОХРАНЯЕМ ССЫЛКИ В cardsData ----
+            const dataObj = {
+                card,
+                quoteText,
+                author,
+                placeholder,
+                themeBadge,
+                inner,
+                theme: initialTheme,
+                quote: '',
+                authorText: '',
+                font: FONTS[3].value,
+                quoteSize: 14,
+                authorSize: 12,
+                color: '#1a1a1a',
+                cardHeight: 200,
+                borderColor: '#1e2a36',
+                borderWidth: 3,
+                // ссылки на элементы редактора
+                textareaQuote: editorData.textareaQuote,
+                inputAuthor: editorData.inputAuthor,
+                selectFont: editorData.selectFont,
+                selectTheme: editorData.selectTheme,
+                rangeSize: editorData.rangeSize,
+                rangeAuthorSize: editorData.rangeAuthorSize,
+                rangeHeight: editorData.rangeHeight,
+                colorPicker: editorData.colorPicker,
+                sizeVal: editorData.sizeVal,
+                authorSizeVal: editorData.authorSizeVal,
+                heightVal: editorData.heightVal,
+                borderColorPicker: editorData.borderColorPicker,
+                rangeBorderWidth: editorData.rangeBorderWidth,
+                borderWidthVal: editorData.borderWidthVal,
+            };
+            cardsData[i] = dataObj;
+
+            // Применяем начальные данные к карточке
+            applyCardData(i);
+        }
+
+        // ============================================================
+        //  ФУНКЦИИ ОБНОВЛЕНИЯ КАРТОЧКИ (индивидуальной)
+        // ============================================================
+        function updateCardFromIndividual(e) {
+            const target = e.target;
+            const index = parseInt(target.dataset.index);
+            const data = cardsData[index];
+            if (!data) return;
+            const field = target.dataset.field;
+            if (field === 'quote') data.quote = target.value;
+            else if (field === 'author') data.authorText = target.value;
+            else if (field === 'font') data.font = target.value;
+            else if (field === 'quoteSize') data.quoteSize = parseInt(target.value);
+            else if (field === 'authorSize') data.authorSize = parseInt(target.value);
+            else if (field === 'color') data.color = target.value;
+            else if (field === 'cardHeight') data.cardHeight = parseInt(target.value);
+            else if (field === 'borderColor') data.borderColor = target.value;
+            else if (field === 'borderWidth') data.borderWidth = parseInt(target.value);
+            applyCardData(index);
+        }
+
+        function updateCardTheme(e) {
+            const target = e.target;
+            const index = parseInt(target.dataset.index);
+            const data = cardsData[index];
+            if (!data) return;
+            data.theme = target.value;
+            applyCardData(index);
+            saveAllToCookie();
+        }
+
+        function applyCardData(index) {
+            const data = cardsData[index];
+            if (!data) return;
+            const {
+                card,
+                quoteText,
+                author,
+                placeholder,
+                themeBadge,
+                inner,
+                textareaQuote,
+                inputAuthor,
+                selectFont,
+                selectTheme,
+                rangeSize,
+                rangeAuthorSize,
+                rangeHeight,
+                colorPicker,
+                sizeVal,
+                authorSizeVal,
+                heightVal,
+                borderColorPicker,
+                rangeBorderWidth,
+                borderWidthVal,
+            } = data;
+
+            // Текст
+            const quoteVal = data.quote || '';
+            quoteText.textContent = quoteVal;
+            if (quoteVal.trim() === '') {
+                placeholder.style.display = 'block';
+                placeholder.textContent = 'Введите цитату';
+            } else {
+                placeholder.style.display = 'none';
+            }
+            author.textContent = data.authorText || '';
+
+            // Шрифт и размеры
+            quoteText.style.fontFamily = data.font;
+            quoteText.style.fontSize = data.quoteSize + 'px';
+            if (sizeVal) sizeVal.textContent = data.quoteSize;
+            author.style.fontSize = data.authorSize + 'px';
+            if (authorSizeVal) authorSizeVal.textContent = data.authorSize;
+            const color = data.color;
+            quoteText.style.color = color;
+            author.style.color = lightenColor(color, 35);
+
+            // Высота карточки
+            card.style.minHeight = data.cardHeight + 'px';
+            if (heightVal) heightVal.textContent = data.cardHeight + 'px';
+
+            // Обводка (CSS-переменные)
+            const borderColor = data.borderColor || '#1e2a36';
+            const borderWidth = data.borderWidth || 3;
+            card.style.setProperty('--card-border-color', borderColor);
+            card.style.setProperty('--card-border-width', borderWidth + 'px');
+            // Для уголков в теме classic используем ту же толщину
+            card.style.setProperty('--card-corner-width', borderWidth + 'px');
+
+            // Обновляем значения в редакторе
+            if (textareaQuote) textareaQuote.value = data.quote;
+            if (inputAuthor) inputAuthor.value = data.authorText;
+            if (selectFont) selectFont.value = data.font;
+            if (selectTheme) selectTheme.value = data.theme;
+            if (rangeSize) rangeSize.value = data.quoteSize;
+            if (rangeAuthorSize) rangeAuthorSize.value = data.authorSize;
+            if (colorPicker) colorPicker.value = color;
+            if (rangeHeight) rangeHeight.value = data.cardHeight;
+            if (borderColorPicker) borderColorPicker.value = borderColor;
+            if (rangeBorderWidth) rangeBorderWidth.value = borderWidth;
+            if (borderWidthVal) borderWidthVal.textContent = borderWidth + 'px';
+
+            // Тема
+            const themeId = data.theme || 'classic';
+            THEMES.forEach(t => {
+                card.classList.remove(`theme-${t.id}`);
+            });
+            card.classList.add(`theme-${themeId}`);
+            card.dataset.theme = themeId;
+            const themeLabel = THEMES.find(t => t.id === themeId)?.label || '';
+            if (themeBadge) themeBadge.textContent = themeLabel;
+
+            // Специфичные стили для oval
+            if (themeId === 'oval') {
+                card.style.aspectRatio = 'auto';
+                card.style.borderRadius = '50%';
+            } else {
+                card.style.aspectRatio = 'auto';
+                card.style.borderRadius = '';
+            }
+            if (selectTheme) selectTheme.value = themeId;
+        }
+
+        // ============================================================
+        //  ОБЩЕЕ РЕДАКТИРОВАНИЕ
+        // ============================================================
+        function applyGlobalToAll() {
+            const quote = globalQuote.value;
+            const author = globalAuthor.value;
+            const font = globalFont.value;
+            const quoteSize = parseInt(globalSize.value);
+            const authorSize = parseInt(globalAuthorSize.value);
+            const color = globalColor.value;
+            const cardHeight = parseInt(globalHeight.value);
+            const borderColor = globalBorderColor.value;
+            const borderWidth = parseInt(globalBorderWidth.value);
+
+            for (let i = 0; i < CARD_COUNT; i++) {
+                const data = cardsData[i];
+                if (!data) continue;
+                data.quote = quote;
+                data.authorText = author;
+                data.font = font;
+                data.quoteSize = quoteSize;
+                data.authorSize = authorSize;
+                data.color = color;
+                data.cardHeight = cardHeight;
+                data.borderColor = borderColor;
+                data.borderWidth = borderWidth;
+                applyCardData(i);
+            }
+            globalSizeVal.textContent = quoteSize;
+            globalAuthorSizeVal.textContent = authorSize;
+            globalHeightVal.textContent = cardHeight + 'px';
+            globalBorderWidthVal.textContent = borderWidth + 'px';
+            saveAllToCookie();
+        }
+
+        globalQuote.addEventListener('input', applyGlobalToAll);
+        globalAuthor.addEventListener('input', applyGlobalToAll);
+        globalFont.addEventListener('change', applyGlobalToAll);
+        globalSize.addEventListener('input', function() {
+            globalSizeVal.textContent = this.value;
+            applyGlobalToAll();
+        });
+        globalAuthorSize.addEventListener('input', function() {
+            globalAuthorSizeVal.textContent = this.value;
+            applyGlobalToAll();
+        });
+        globalColor.addEventListener('input', applyGlobalToAll);
+        globalHeight.addEventListener('input', function() {
+            globalHeightVal.textContent = this.value + 'px';
+            applyGlobalToAll();
+        });
+        globalBorderColor.addEventListener('input', applyGlobalToAll);
+        globalBorderWidth.addEventListener('input', function() {
+            globalBorderWidthVal.textContent = this.value + 'px';
+            applyGlobalToAll();
+        });
+
+        // ============================================================
+        //  СОХРАНЕНИЕ В COOKIE
+        // ============================================================
+        function saveAllToCookie() {
+            const dataToSave = [];
+            for (let i = 0; i < CARD_COUNT; i++) {
+                const d = cardsData[i];
+                dataToSave.push({
+                    theme: d.theme || 'classic',
+                    quote: d.quote || '',
+                    author: d.authorText || '',
+                    font: d.font || FONTS[3].value,
+                    quoteSize: d.quoteSize || 14,
+                    authorSize: d.authorSize || 12,
+                    color: d.color || '#1a1a1a',
+                    cardHeight: d.cardHeight || 200,
+                    borderColor: d.borderColor || '#1e2a36',
+                    borderWidth: d.borderWidth || 3,
+                });
+            }
+            saveDataToCookie(dataToSave);
+        }
+
+        // ============================================================
+        //  ЗАГРУЗКА ИЗ COOKIE
+        // ============================================================
+        function loadFromCookie() {
+            const saved = loadDataFromCookie();
+            if (saved && Array.isArray(saved) && saved.length === CARD_COUNT) {
+                for (let i = 0; i < CARD_COUNT; i++) {
+                    const d = cardsData[i];
+                    if (!d) continue;
+                    const s = saved[i];
+                    d.theme = s.theme || 'classic';
+                    d.quote = s.quote || '';
+                    d.authorText = s.author || '';
+                    d.font = s.font || FONTS[3].value;
+                    d.quoteSize = s.quoteSize || 14;
+                    d.authorSize = s.authorSize || 12;
+                    d.color = s.color || '#1a1a1a';
+                    d.cardHeight = s.cardHeight || 200;
+                    d.borderColor = s.borderColor || '#1e2a36';
+                    d.borderWidth = s.borderWidth || 3;
+                    applyCardData(i);
+                }
+                const first = cardsData[0];
+                if (first) {
+                    globalQuote.value = first.quote || '';
+                    globalAuthor.value = first.authorText || '';
+                    globalFont.value = first.font || FONTS[3].value;
+                    globalSize.value = first.quoteSize || 14;
+                    globalAuthorSize.value = first.authorSize || 12;
+                    globalColor.value = first.color || '#1a1a1a';
+                    globalHeight.value = first.cardHeight || 200;
+                    globalBorderColor.value = first.borderColor || '#1e2a36';
+                    globalBorderWidth.value = first.borderWidth || 3;
+                    globalSizeVal.textContent = first.quoteSize || 14;
+                    globalAuthorSizeVal.textContent = first.authorSize || 12;
+                    globalHeightVal.textContent = (first.cardHeight || 200) + 'px';
+                    globalBorderWidthVal.textContent = (first.borderWidth || 3) + 'px';
+                }
+                return true;
+            }
+            return false;
+        }
+
+        // ============================================================
+        //  ОСВЕТЛЕНИЕ ЦВЕТА
+        // ============================================================
+        function lightenColor(hex, percent) {
+            let r = parseInt(hex.slice(1, 3), 16);
+            let g = parseInt(hex.slice(3, 5), 16);
+            let b = parseInt(hex.slice(5, 7), 16);
+            r = Math.min(255, Math.floor(r + (255 - r) * (percent / 100)));
+            g = Math.min(255, Math.floor(g + (255 - g) * (percent / 100)));
+            b = Math.min(255, Math.floor(b + (255 - b) * (percent / 100)));
+            return `rgb(${r},${g},${b})`;
+        }
+
+        // ============================================================
+        //  ИНИЦИАЛИЗАЦИЯ
+        // ============================================================
+        const loaded = loadFromCookie();
+        if (!loaded) {
+            for (let i = 0; i < CARD_COUNT; i++) {
+                const d = cardsData[i];
+                if (!d) continue;
+                d.theme = initThemes[i] || 'classic';
+                d.quote = '';
+                d.authorText = '';
+                d.font = FONTS[3].value;
+                d.quoteSize = 14;
+                d.authorSize = 12;
+                d.color = '#1a1a1a';
+                d.cardHeight = 200;
+                d.borderColor = '#1e2a36';
+                d.borderWidth = 3;
+                applyCardData(i);
+            }
+            globalQuote.value = '';
+            globalAuthor.value = '';
+            globalFont.value = FONTS[3].value;
+            globalSize.value = 14;
+            globalAuthorSize.value = 12;
+            globalColor.value = '#1a1a1a';
+            globalHeight.value = 200;
+            globalBorderColor.value = '#1e2a36';
+            globalBorderWidth.value = 3;
+            globalSizeVal.textContent = '14';
+            globalAuthorSizeVal.textContent = '12';
+            globalHeightVal.textContent = '200px';
+            globalBorderWidthVal.textContent = '3px';
+            saveAllToCookie();
+        }
+
+        console.log('6 трафаретов загружено. Добавлены настройки обводки.');
+    </script>
+
+</body>
+</html>
