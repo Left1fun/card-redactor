@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Шаблоны для цитат</title>
+    <link rel="icon" type="image/png" href="C:\Users\kirko\Downloads\free-icon-playing-card-2022103.png">
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -425,7 +426,6 @@
             border: var(--card-border-width, 3px) solid var(--card-border-color, #1e2a36);
             border-radius: 16px;
             box-shadow: inset 0 0 0 1px rgba(30, 42, 54, 0.03);
-            /* переменные для внутренних элементов */
             --card-corner-width: 4px;
         }
 
@@ -716,6 +716,7 @@
             border-radius: 10px;
             letter-spacing: 0.3px;
             font-weight: 500;
+            text-transform: lowercase;
             pointer-events: none;
             z-index: 5;
         }
@@ -869,7 +870,7 @@
         <button class="print-btn" onclick="window.print()">
             Печать
         </button>
-        <button class="print-btn" style="background:#7f8c8d;" onclick="location.reload()">
+        <button class="print-btn" style="background:#7f8c8d;" onclick="resetAll()">
             Сбросить
         </button>
     </div>
@@ -972,6 +973,8 @@
             { name: 'Verdana', value: "'Verdana',sans-serif" },
             { name: 'Impact', value: "'Impact',sans-serif" },
         ];
+
+        const INIT_THEMES = THEMES.map(t => t.id); // ['classic','oval','ticket','double','book','checkered']
 
         // ============================================================
         //  РАБОТА С COOKIE
@@ -1349,10 +1352,8 @@
         // ============================================================
         //  ИНИЦИАЛИЗАЦИЯ КАРТОЧЕК И РЕДАКТОРОВ
         // ============================================================
-        const initThemes = THEMES.map(t => t.id);
-
         for (let i = 0; i < CARD_COUNT; i++) {
-            const initialTheme = initThemes[i] || 'classic';
+            const initialTheme = INIT_THEMES[i] || 'classic';
 
             // ---- СОЗДАНИЕ ОБЁРТКИ ----
             const wrapper = document.createElement('div');
@@ -1544,7 +1545,6 @@
             const borderWidth = data.borderWidth || 3;
             card.style.setProperty('--card-border-color', borderColor);
             card.style.setProperty('--card-border-width', borderWidth + 'px');
-            // Для уголков в теме classic используем ту же толщину
             card.style.setProperty('--card-corner-width', borderWidth + 'px');
 
             // Обновляем значения в редакторе
@@ -1705,6 +1705,48 @@
         }
 
         // ============================================================
+        //  ФУНКЦИЯ СБРОСА (исправленная)
+        // ============================================================
+        function resetAll() {
+            // Сброс данных всех карточек до начальных значений
+            for (let i = 0; i < CARD_COUNT; i++) {
+                const d = cardsData[i];
+                if (!d) continue;
+                d.theme = INIT_THEMES[i] || 'classic';
+                d.quote = '';
+                d.authorText = '';
+                d.font = FONTS[3].value;
+                d.quoteSize = 14;
+                d.authorSize = 12;
+                d.color = '#1a1a1a';
+                d.cardHeight = 200;
+                d.borderColor = '#1e2a36';
+                d.borderWidth = 3;
+                applyCardData(i);
+            }
+
+            // Сброс глобальных полей
+            globalQuote.value = '';
+            globalAuthor.value = '';
+            globalFont.value = FONTS[3].value;
+            globalSize.value = 14;
+            globalAuthorSize.value = 12;
+            globalColor.value = '#1a1a1a';
+            globalHeight.value = 200;
+            globalBorderColor.value = '#1e2a36';
+            globalBorderWidth.value = 3;
+            globalSizeVal.textContent = '14';
+            globalAuthorSizeVal.textContent = '12';
+            globalHeightVal.textContent = '200px';
+            globalBorderWidthVal.textContent = '3px';
+
+            // Перезаписываем куку дефолтными значениями
+            saveAllToCookie();
+
+            console.log('Все настройки сброшены к начальным.');
+        }
+
+        // ============================================================
         //  ОСВЕТЛЕНИЕ ЦВЕТА
         // ============================================================
         function lightenColor(hex, percent) {
@@ -1722,10 +1764,11 @@
         // ============================================================
         const loaded = loadFromCookie();
         if (!loaded) {
+            // Если куки нет – устанавливаем начальные значения
             for (let i = 0; i < CARD_COUNT; i++) {
                 const d = cardsData[i];
                 if (!d) continue;
-                d.theme = initThemes[i] || 'classic';
+                d.theme = INIT_THEMES[i] || 'classic';
                 d.quote = '';
                 d.authorText = '';
                 d.font = FONTS[3].value;
@@ -1753,7 +1796,7 @@
             saveAllToCookie();
         }
 
-        console.log('6 трафаретов загружено. Добавлены настройки обводки.');
+        console.log('6 трафаретов загружено. Кнопка "Сбросить" теперь работает корректно.');
     </script>
 
 </body>
